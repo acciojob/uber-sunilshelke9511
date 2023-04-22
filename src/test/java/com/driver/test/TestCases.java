@@ -24,4 +24,3 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class TestCases {
 }
-
