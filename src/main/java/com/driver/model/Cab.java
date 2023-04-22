@@ -1,19 +1,31 @@
 package com.driver.model;
 
 import javax.persistence.*;
-import java.sql.Driver;
 
 @Entity
 public class Cab{
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private int perKmRate;
+
     private boolean available;
 
     @OneToOne
     @JoinColumn
-    public Driver driver;
+    Driver driver;
+
+    public Cab() {
+    }
+
+    public Cab(int id, int perKmRate, boolean available, Driver driver) {
+        this.id = id;
+        this.perKmRate = perKmRate;
+        this.available = available;
+        this.driver = driver;
+    }
 
     public int getId() {
         return id;
