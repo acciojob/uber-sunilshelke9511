@@ -26,9 +26,8 @@ public class DriverServiceImpl implements DriverService {
 		driver.setPassword(password);
 
 		Cab cab = new Cab();
-		cab.setAvailable(true);
 		cab.setPerKmRate(10);
-		cab.setDriver(driver);
+		cab.setAvailable(true);
 
 		driver.setCab(cab);
 		driverRepository3.save(driver);
@@ -37,24 +36,18 @@ public class DriverServiceImpl implements DriverService {
 	@Override
 	public void removeDriver(int driverId){
 		// Delete driver without using deleteById function
-//		Driver driver;
-//		try{
-//			driver = driverRepository3.findById(driverId).get();
-//		}catch (Exception e){
-//			throw new RuntimeException();
-//		}
-		driverRepository3.deleteByDriverId(driverId);
+		Driver driver = driverRepository3.findById(driverId).get();
+		driverRepository3.delete(driver);
+
 	}
 
 	@Override
 	public void updateStatus(int driverId){
 		//Set the status of respective car to unavailable
-		Driver driver;
-		try{
-			driver = driverRepository3.findById(driverId).get();
-		}catch (Exception e){
-			throw new RuntimeException();
-		}
+
+		Driver driver = driverRepository3.findById(driverId).get();
 		driver.getCab().setAvailable(false);
+		driverRepository3.save(driver);
+
 	}
 }
