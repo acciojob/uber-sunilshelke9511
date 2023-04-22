@@ -7,4 +7,5 @@ import com.driver.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
+    public void deleteByCustomerId(Integer customerId);
 }
